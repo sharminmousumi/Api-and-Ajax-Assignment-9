@@ -1,0 +1,21 @@
+body{
+  background-color: #dddddd;
+}table.view-book {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  table.view-book td, table.view-book th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  table{
+    width:100%;
+}
+legend{
+    font-size: 16px;
+    font-weight: bold;
+}
