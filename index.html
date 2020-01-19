@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html>
 <head>
-        <title>book database</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-       <link href="css/custom.css" rel="stylesheet" type="text/css"/>
-       <script src="js/app.js"></script>
+  <link href="css/custom.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
-  <fieldset style="background-color: #F5F5F5;"> <legend>Add Book</legend>
+  
+  <fieldset style="background-color: #F5F5F5;"> <legend>Add Form</legend>
       <form>
   
           <table style="width:100%;">
@@ -23,7 +19,7 @@
                   Title:
               </td>
               <td>
-              <input id="Title" name="title" type="text"/>
+              <input id="title" name="title" type="text"/>
               </td>
             </tr>
           <tr>
@@ -44,7 +40,7 @@
       </form>
     </fieldset>
 
-  <fieldset style="background-color: #FFFAFA;"> <legend>Update Book</legend>
+  <fieldset style="background-color: #FFFAFA;"> <legend>Update Form</legend>
     <form>
 
         <table style="width:100%;">
@@ -57,7 +53,7 @@
                 Title:
             </td>
             <td>
-            <input id="titl" name="tit" type="text"/>
+            <input id="title" name="title" type="text"/>
             </td>
           </tr>
         <tr>
@@ -65,7 +61,7 @@
                 Author:
             </td>
             <td>
-                <input id="autho" name="auth" type="text"/>
+                <input id="author" name="author" type="text"/>
             </td>
             </tr>
             <tr>
@@ -73,7 +69,7 @@
                 Id:
                 </td>
                 <td>
-                <input id="dd" name="i" type="text"/>
+                <input id="id" name="id" type="text"/>
                 </td>
             </tr>
             <tr>
@@ -86,7 +82,7 @@
     </form>
   </fieldset>
 
-  <fieldset  style="background-color: #F5FFFA;"> <legend>Delete deleteBook</legend>
+  <fieldset  style="background-color: #F5FFFA;"> <legend>Delete Form</legend>
     <form>
         <table style="width:100%;">
             <tr>
@@ -111,15 +107,16 @@
   </fieldset>
   
 
-  <fieldset style="background-color: #F0FFFF;"> <legend>View Book</legend>
+  <fieldset style="background-color: #F0FFFF;"> <legend>View Form</legend>
     <form>
 
         <table style="width:100%;">
             <tr>
-                  <td class="message"></td>
-            </tr>
+            <td class="message" colspan="2">
+            </td>
+           </tr>
             <tr>
-                <td >
+                <td colspan="2">
 
                     <input type="button" onclick="viewBooks(this)" value="view"/>       
                 </td>
@@ -146,5 +143,5 @@
   </fieldset>
  
 </body>
-
+<script src="js/app.js"></script>
 </html>

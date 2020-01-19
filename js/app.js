@@ -1,6 +1,7 @@
 
 let key = 'F7pUW';  // once you have a key, it is ok to store it in a variable
 const baseUrl = 'https://www.forverkliga.se/JavaScript/api/crud.php?key=' + key;
+const apiAttempt = 5;
 //let message  = document.getElementById("message");
 
 function getFormData(elements, form){
@@ -25,10 +26,7 @@ function addBook(e){
   const elements = ["author","title"];
   const formdataQueryString = getFormData(elements, e.closest('form'))
   const viewRequest = baseUrl + '&op=insert&' + formdataQueryString;
-  fetch(viewRequest)
-   .then(function(resp) {
-    return resp.json();
-  })
+  fetch_retry(viewRequest, apiAttempt)
    .then(function(data){
     if(data.status == 'success') { 
       message[0].style.color = "green";
@@ -39,7 +37,6 @@ function addBook(e){
     }
   })
     .catch(function(error) { 
-    console.log(error);
   });  
 
 }
@@ -49,10 +46,7 @@ function deleteBook(e){
   const elements = ["id"];
   const formdataQueryString = getFormData(elements, e.closest('form'))
   const viewRequest = baseUrl + '&op=delete&' + formdataQueryString;
-  fetch(viewRequest)
-   .then(function(resp) {
-    return resp.json();
-  })
+  fetch_retry(viewRequest, apiAttempt)
    .then(function(data){
     if(data.status == 'success') { 
       message[0].style.color = "green";
@@ -72,10 +66,7 @@ function updateBook(e){
   const elements = ["id","title","author"];
   const formdataQueryString = getFormData(elements, e.closest('form'))
   const viewRequest = baseUrl + '&op=update&' + formdataQueryString;
-  fetch(viewRequest)
-   .then(function(resp) {
-    return resp.json();
-  })
+  fetch_retry(viewRequest, apiAttempt)
    .then(function(data){
     if(data.status == 'success') { 
       message[0].style.color = "green";
@@ -95,10 +86,7 @@ function viewBooks(e){
   const viewBookTable = document.getElementsByClassName("view-book");
   viewBookTable[0].children[1].innerHTML = "";
   const viewRequest = baseUrl + '&op=select';
-  fetch(viewRequest)
-   .then(function(resp) {
-    return resp.json();
-  })
+  fetch_retry(viewRequest, apiAttempt)
    .then(function(data){
     if(data.status == 'success') { 
       let outputs = "";
@@ -119,4 +107,20 @@ function viewBooks(e){
     .catch(function(error) { 
     console.log(error);
   }); 
+}
+
+function fetch_retry(url, n) {
+  return fetch(url).catch(function(error) {
+      if (n === 1) return error;
+      return fetch_retry(url, n - 1);
+  }).then(function(resp){
+        return resp.json();
+  }).then(function(data){
+      if(n === 1) return data;
+      if(data.status == 'success') {  
+         return data;
+      }else {
+        return fetch_retry(url, n - 1);
+      }
+  });
 }
